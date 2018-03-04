@@ -27,10 +27,7 @@ public class Init {
             Player player = new Player(user);
             player.setTeam(team);
             team.addPlayer(player);
-
-
             user.setGame(game);
-
         }
         User user = new User();
         user.setName("BossTwo");
@@ -77,7 +74,7 @@ public class Init {
     }
 
     private void generateCards(CardRepository cardRepository) {
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < 25; i++) {
             Card card = new Card("card" + i);
             cardRepository.save(card);
         }

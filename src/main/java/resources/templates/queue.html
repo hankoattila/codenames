@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" th:href="@{~/css/table-dark.css}"/>
     <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{~/js/queue.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/WSqueue.js}"></script>
 </head>
 <body>
 
@@ -22,7 +22,7 @@
                         th:src="${team.picture}"
                         class="img-circle"></h3>
                 <h4 th:if="${team.boss != null}"><span th:text="${'Boss: ' + team.boss.user.name + ' 🦄'}"></span></h4>
-                <ul>
+                <ul id="player">
                     <li th:each="player: ${team.players}" th:text="${player.user.name}"></li>
                 </ul>
             </div>

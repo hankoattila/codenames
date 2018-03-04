@@ -5,13 +5,21 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
+
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
+    private SocketHandler socketHandler;
+
+    public WebSocketConfig(SocketHandler socketHandler) {
+        this.socketHandler = socketHandler;
+    }
+
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new SocketHandler(), "/queue");
+        registry.addHandler(socketHandler, "/socket/queue");
+        registry.addHandler(socketHandler, "/socket/player");
     }
 
 }

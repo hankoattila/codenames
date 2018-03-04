@@ -1,20 +1,40 @@
-.blue{
+.blue {
     background-color: blue;
 }
-.red{
+
+.red {
     background-color: red;
 }
-.grey{
-    background-color: rgba(153,165,171,0.82);
-}
-.black{
-    background-color: black;
+
+.grey {
+    background-color: rgba(153, 165, 171, 0.82);
 }
 
-.card{
-    width: 100px;
-    height: 100px;
+.card {
+    background-image: url("../pictures/card/card.png");
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
-.td{
-    margin: 20px;
+
+.td {
+    width: 183px;
+    height: 120px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+div table {
+    height: 80%;
+    width: 80%;
+}
+
+.container {
+    height: 100%;
 }

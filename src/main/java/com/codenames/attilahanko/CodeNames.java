@@ -10,4 +10,5 @@ public class CodeNames {
         SpringApplication.run(CodeNames.class, args);
     }
 
+
 }

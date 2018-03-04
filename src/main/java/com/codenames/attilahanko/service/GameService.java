@@ -15,6 +15,8 @@ public interface GameService {
 
     String handleSelectName(User user, Model model, HttpServletRequest httpServletRequest);
 
+    void addUserToGame(Game game, User user, HttpServletRequest httpServletRequest);
+
     Game getGameByName(String gameName);
 
     PlayerDTO handlePlayerPoll(String gameName, User user);

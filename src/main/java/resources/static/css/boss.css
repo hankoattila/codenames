@@ -1,20 +1,35 @@
-.blue{
-    background-color: blue;
-}
-.red{
-    background-color: red;
-}
-.grey{
-    background-color: rgba(153,165,171,0.82);
-}
-.black{
-    background-color: black;
+.blue {
+    background-image: url("../pictures/card/blue_boy.jpg");
+
 }
 
-.card{
-    width: 100px;
-    height: 100px;
+.red {
+    background-image: url("../pictures/card/red_boy.jpg");
 }
-.td{
-    margin: 20px;
+
+.grey {
+    background-image: url("../pictures/card/civil_girl.jpg");
+}
+
+.black {
+    background-image: url("../pictures/card/black.jpg");
+}
+
+.card {
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.td {
+    margin: 300px;
+    height: 150px;
+}
+
+table {
+    height: 800px;
+    width: 100%;
 }

@@ -1,11 +1,13 @@
 package com.codenames.attilahanko.service.implementation.game;
 
+import com.codenames.attilahanko.event.queue.NewPlayerAdded;
 import com.codenames.attilahanko.model.*;
 import com.codenames.attilahanko.repository.GameRepository;
 import com.codenames.attilahanko.repository.PlayerRepository;
 import com.codenames.attilahanko.repository.UserRepository;
 import com.codenames.attilahanko.service.GameService;
 import com.codenames.attilahanko.utils.Path;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -20,13 +22,16 @@ public class GameServiceImpl implements GameService {
     private GameRepository gameRepository;
     private UserRepository userRepository;
     private PlayerRepository playerRepository;
+    private ApplicationEventPublisher publisher;
 
     public GameServiceImpl(GameRepository gameRepository,
                            UserRepository userRepository,
-                           PlayerRepository playerRepository) {
+                           PlayerRepository playerRepository,
+                           ApplicationEventPublisher publisher) {
         this.gameRepository = gameRepository;
         this.userRepository = userRepository;
         this.playerRepository = playerRepository;
+        this.publisher = publisher;
     }
 
     @Override
@@ -36,7 +41,6 @@ public class GameServiceImpl implements GameService {
         User savedUser = userRepository.findByNameAndGameId(user.getName(), game.getId());
         if (savedUser != null) {
             setSessionAttributeFromSavedUser(savedUser, game, httpServletRequest);
-
         } else {
             addUserToGame(game, user, httpServletRequest);
             gameRepository.save(game);
@@ -45,19 +49,9 @@ public class GameServiceImpl implements GameService {
         return "redirect:" + Path.Web.QUEUE;
     }
 
-    private void validUserName(List<String> errorMessage, Game game, User user, Model model) {
-        User savedUser = userRepository.findByNameAndGameId(user.getName(), game.getId());
-        if (savedUser != null) {
-            errorMessage.add("This Name already used");
-        }
-        String userName = user.getName();
-        if (userName == null) {
-            errorMessage.add("This Name already used");
-        }
-    }
 
-
-    private void addUserToGame(Game game, User user, HttpServletRequest httpServletRequest) {
+    @Override
+    public void addUserToGame(Game game, User user, HttpServletRequest httpServletRequest) {
         user.setGame(game);
         for (Team team : game.getTeams()) {
             if (team.getBoss() == null) {
@@ -78,6 +72,7 @@ public class GameServiceImpl implements GameService {
             player.setTeam(game.getTeams().get(0));
         }
         httpServletRequest.getSession().setAttribute("player", player);
+        publisher.publishEvent(new NewPlayerAdded(user.getName()));
 
 
     }
@@ -129,6 +124,7 @@ public class GameServiceImpl implements GameService {
         Player player = playerRepository.findById(user.getId());
         playerDTO.setYourTurn(isYourTurn(game, player));
         playerDTO.setCards(getCards(game));
+        publisher.publishEvent(playerDTO);
         return playerDTO;
     }
 

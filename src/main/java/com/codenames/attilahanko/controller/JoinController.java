@@ -4,6 +4,7 @@ import com.codenames.attilahanko.model.Game;
 import com.codenames.attilahanko.model.User;
 import com.codenames.attilahanko.service.GameService;
 import com.codenames.attilahanko.utils.Path;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class JoinController {
     private GameService gameService;
+    private ApplicationEventPublisher publisher;
 
-    public JoinController(GameService gameService) {
+    public JoinController(GameService gameService,
+                          ApplicationEventPublisher publisher) {
         this.gameService = gameService;
+        this.publisher = publisher;
     }
 
     @GetMapping({Path.Web.INDEX, Path.Web.ENTER})
