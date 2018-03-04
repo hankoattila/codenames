@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{~/css/table-dark.css}"/>
+    <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/queue.js}"></script>
+</head>
+<body>
+
+
+<h1><span th:text="${session.user.name}"></span></h1>
+<div class="container text-center boosters" th:object="${game}">
+    <form th:action="@{/start}" method="post" th:if="${session.user.name eq 'Ödön'}">
+        <button type="submit">Start</button>
+    </form>
+    <div class="index-content">
+        <div id="pricing-table" class="clear content">
+            <div class="plan" th:each="team : *{teams}">
+                <h3><img
+                        th:src="${team.picture}"
+                        class="img-circle"></h3>
+                <h4 th:if="${team.boss != null}"><span th:text="${'Boss: ' + team.boss.user.name + ' 🦄'}"></span></h4>
+                <ul>
+                    <li th:each="player: ${team.players}" th:text="${player.user.name}"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</body>
+</html>

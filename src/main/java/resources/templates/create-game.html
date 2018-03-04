@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorator="layouts/layout" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+<div layout:fragment="loginContent">
+    <h1>Select game</h1>
+    <div th:if="${param.error}">
+        Invalid Username or Password
+    </div>
+    <div th:if="${param.logout}">
+        Logout Successful
+    </div>
+    <form th:action="@{/create-game}" method="post" th:object="${game}" >
+        <input type="text" name="game-name" id="game-name" th:field="*{name}"  required="true"/><br/>
+        <button type="submit" value="Submit">Login</button>
+        <a th:href="@{/enter}"><button>Join to Game</button></a>
+    </form>
+    <br/>
+</div>
+
+</body>
+</html>
+

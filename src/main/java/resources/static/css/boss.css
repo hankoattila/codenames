@@ -1,0 +1,20 @@
+.blue{
+    background-color: blue;
+}
+.red{
+    background-color: red;
+}
+.grey{
+    background-color: rgba(153,165,171,0.82);
+}
+.black{
+    background-color: black;
+}
+
+.card{
+    width: 100px;
+    height: 100px;
+}
+.td{
+    margin: 20px;
+}

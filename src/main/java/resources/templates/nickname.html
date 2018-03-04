@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorator="layouts/layout" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+<div layout:fragment="loginContent">
+    <h1>Please Select NickName</h1>
+    <form th:action="@{/nickname}" th:object="${user}" method="post">
+        <div th:each="error: ${errors}" th:text="${error}">
+
+        </div>
+
+        <div th:if="${param.logout}">
+            Logout done
+        </div>
+
+        <input type="text" name="roomName" id="roomName" th:field="*{name}" required="true"/><br/>
+        <button type="submit" value="Submit">Select</button>
+    </form>
+    <br/>
+</div>
+
+</body>
+</html>

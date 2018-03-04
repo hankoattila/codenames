@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{~/css/index-layout.css}"/>
+    <title>Title</title>
+</head>
+<body>
+<h6>Hankó Attila - CodeNames</h6>
+<br/>
+<div class="body"></div>
+<a th:href="@{/login}">Login</a>
+<a th:href="@{/register}">Registration</a>
+<div layout:fragment="loginContent">
+
+</div>
+
+<footer><h6>2018 - Codecool - Spring </h6></footer>
+</body>
+</html>

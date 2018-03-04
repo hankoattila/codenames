@@ -1,0 +1,26 @@
+logging.level.sec= DEBUG
+
+#Port
+server.port = 8080
+
+
+# Thymeleaf
+spring.thymeleaf.cache= false
+spring.thymeleaf.mode=LEGACYHTML5
+
+#SQL
+spring.jpa.show-sql=true
+spring.datasource.url=""
+spring.datasource.username= ""
+spring.datasource.password= ""
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=create-drop
+
+#Email
+spring.mail.host: smtp.gmail.com
+spring.mail.port: 25
+spring.mail.username: ""
+spring.mail.password: ""
+spring.mail.properties.mail.smtp.starttls.enable: true
+
+
