@@ -1,6 +1,7 @@
 package com.codenames.attilahanko.event.queue;
 
 import com.codenames.attilahanko.websocket.socketsession.GetWebSocketSession;
+import com.google.gson.Gson;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -19,9 +20,9 @@ public class QueueEventHandler {
     }
 
     @EventListener
-    public void onNewPlayer(NewPlayerAdded newPlayerAdded) throws IOException {
+    public void onNewPlayer(QueueDTO queueDTO) throws IOException {
         for (WebSocketSession session : sessions) {
-            session.sendMessage(new TextMessage(newPlayerAdded.name));
+            session.sendMessage(new TextMessage(new Gson().toJson(queueDTO)));
         }
     }
 }

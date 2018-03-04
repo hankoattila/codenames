@@ -1,6 +1,6 @@
 package com.codenames.attilahanko.service.implementation.game;
 
-import com.codenames.attilahanko.event.queue.NewPlayerAdded;
+import com.codenames.attilahanko.event.queue.QueueDTO;
 import com.codenames.attilahanko.model.game.Game;
 import com.codenames.attilahanko.model.game.Team;
 import com.codenames.attilahanko.model.player.Boss;
@@ -65,16 +65,16 @@ public class GameServiceImpl implements GameService, HandleGameRepository {
         Team teamOne = game.getTeams().get(0);
         Team teamTwo = game.getTeams().get(1);
         if (teamOne.getSize() >= teamTwo.getSize()) {
-            teamOne.addPlayer(player);
-            player.setTeam(teamOne);
-        } else {
             teamTwo.addPlayer(player);
             player.setTeam(teamTwo);
+        } else {
+            teamOne.addPlayer(player);
+            player.setTeam(teamOne);
         }
 
         user.setGame(game);
         addToSession("player", player, request);
-        publisher.publishEvent(new NewPlayerAdded(user.getName()));
+        publisher.publishEvent(new QueueDTO(game.getTeams()));
 
 
     }
