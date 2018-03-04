@@ -1,6 +1,6 @@
 package com.codenames.attilahanko.service.implementation.useraccount;
 
-import com.codenames.attilahanko.model.UserAccount;
+import com.codenames.attilahanko.model.player.UserAccount;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -18,7 +18,6 @@ public class UserAccountDetailServiceImpl implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-
         return null;
     }
 

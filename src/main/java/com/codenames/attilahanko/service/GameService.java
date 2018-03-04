@@ -1,23 +1,22 @@
 package com.codenames.attilahanko.service;
 
-import com.codenames.attilahanko.model.Game;
-import com.codenames.attilahanko.model.PlayerDTO;
-import com.codenames.attilahanko.model.User;
+import com.codenames.attilahanko.model.game.Game;
+import com.codenames.attilahanko.model.player.User;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 
 public interface GameService {
 
-    Game findByName(String name);
-
-    void saveGame(Game game);
-
     String handleSelectName(User user, Model model, HttpServletRequest httpServletRequest);
 
-    void addUserToGame(Game game, User user, HttpServletRequest httpServletRequest);
+    void addUserToGame(User user, Game game, HttpServletRequest httpServletRequest);
 
     Game getGameByName(String gameName);
 
-    PlayerDTO handlePlayerPoll(String gameName, User user);
+    Game handleSelectGame(String gameName);
+
+    String handleEnterPage(String gameName, HttpServletRequest httpServletRequest);
+
+    String serveQueue(Model model, HttpServletRequest httpServletRequest);
 }

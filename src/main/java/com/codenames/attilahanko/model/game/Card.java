@@ -1,4 +1,4 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.game;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

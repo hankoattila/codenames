@@ -1,4 +1,4 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.game;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.tomcat.util.digester.ArrayStack;

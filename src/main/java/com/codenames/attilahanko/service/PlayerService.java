@@ -1,7 +1,7 @@
 package com.codenames.attilahanko.service;
 
-import com.codenames.attilahanko.model.Player;
-import com.codenames.attilahanko.model.User;
+import com.codenames.attilahanko.model.player.Player;
+import com.codenames.attilahanko.model.player.User;
 
 public interface PlayerService {
 

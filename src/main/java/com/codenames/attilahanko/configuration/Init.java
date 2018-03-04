@@ -1,6 +1,12 @@
 package com.codenames.attilahanko.configuration;
 
-import com.codenames.attilahanko.model.*;
+import com.codenames.attilahanko.model.game.Card;
+import com.codenames.attilahanko.model.game.Game;
+import com.codenames.attilahanko.model.game.Team;
+import com.codenames.attilahanko.model.player.Boss;
+import com.codenames.attilahanko.model.player.Player;
+import com.codenames.attilahanko.model.player.User;
+import com.codenames.attilahanko.model.player.UserAccount;
 import com.codenames.attilahanko.repository.CardRepository;
 import com.codenames.attilahanko.repository.GameRepository;
 import org.springframework.stereotype.Component;

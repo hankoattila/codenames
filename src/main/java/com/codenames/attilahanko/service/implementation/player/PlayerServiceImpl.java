@@ -1,7 +1,7 @@
 package com.codenames.attilahanko.service.implementation.player;
 
-import com.codenames.attilahanko.model.Player;
-import com.codenames.attilahanko.model.User;
+import com.codenames.attilahanko.model.player.Player;
+import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.repository.PlayerRepository;
 import com.codenames.attilahanko.service.PlayerService;
 import org.springframework.stereotype.Service;

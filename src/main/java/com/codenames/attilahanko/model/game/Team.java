@@ -1,6 +1,8 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.game;
 
 
+import com.codenames.attilahanko.model.player.Boss;
+import com.codenames.attilahanko.model.player.Player;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

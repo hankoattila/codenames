@@ -1,26 +1,33 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.player;
 
+import com.codenames.attilahanko.model.game.Game;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "useracconts")
-public class UserAccount {
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"id", "game_id"})
+})
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String name;
-
-    private String password;
 
     @JsonIgnore
     @OneToOne
     private Game game;
 
-    public UserAccount() {
+
+    public User() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -30,15 +37,6 @@ public class UserAccount {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
     public Game getGame() {
         return game;

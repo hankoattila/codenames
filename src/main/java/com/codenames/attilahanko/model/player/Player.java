@@ -1,32 +1,32 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.player;
 
+import com.codenames.attilahanko.model.game.Team;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "bosses")
-public class Boss {
+@Table(name = "players")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JsonIgnore
-    @OneToOne
+    @ManyToOne
     private Team team;
-
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    public Boss() {
+    public Player() {
     }
 
-    public Boss(User user) {
+    public Player(User user) {
         this.user = user;
     }
-
 
     public Team getTeam() {
         return team;
@@ -35,6 +35,7 @@ public class Boss {
     public void setTeam(Team team) {
         this.team = team;
     }
+
 
     public User getUser() {
         return user;

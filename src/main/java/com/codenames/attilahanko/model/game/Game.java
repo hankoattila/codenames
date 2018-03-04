@@ -1,4 +1,6 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.game;
+
+import com.codenames.attilahanko.model.player.UserAccount;
 
 import javax.persistence.*;
 import java.util.ArrayList;

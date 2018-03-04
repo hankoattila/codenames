@@ -1,4 +1,4 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.player;
 
 import java.util.List;
 

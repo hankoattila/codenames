@@ -1,6 +1,6 @@
 package com.codenames.attilahanko.repository;
 
-import com.codenames.attilahanko.model.Player;
+import com.codenames.attilahanko.model.player.Player;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

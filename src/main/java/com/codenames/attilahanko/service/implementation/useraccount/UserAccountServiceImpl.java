@@ -1,6 +1,6 @@
 package com.codenames.attilahanko.service.implementation.useraccount;
 
-import com.codenames.attilahanko.model.UserAccount;
+import com.codenames.attilahanko.model.player.UserAccount;
 import com.codenames.attilahanko.repository.UserAccountRepository;
 import com.codenames.attilahanko.service.UserAccountService;
 import org.springframework.security.core.userdetails.UserDetails;

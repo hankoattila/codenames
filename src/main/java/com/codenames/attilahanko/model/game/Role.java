@@ -1,4 +1,4 @@
-package com.codenames.attilahanko.model;
+package com.codenames.attilahanko.model.game;
 
 public enum Role {
     PLAYER("PLAYER"),BOSS("BOSS"),ADMIN("ADMIN");

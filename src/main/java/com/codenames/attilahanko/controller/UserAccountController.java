@@ -1,6 +1,6 @@
 package com.codenames.attilahanko.controller;
 
-import com.codenames.attilahanko.model.UserAccount;
+import com.codenames.attilahanko.model.player.UserAccount;
 import com.codenames.attilahanko.service.UserAccountService;
 import com.codenames.attilahanko.utils.Path;
 import org.springframework.stereotype.Controller;
