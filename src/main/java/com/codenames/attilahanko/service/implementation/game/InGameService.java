@@ -64,7 +64,7 @@ public class InGameService implements HandleGameRepository {
     public PlayerDTO handlePlayerPoll(String gameName, User user) {
         PlayerDTO playerDTO = new PlayerDTO();
         Game game = gameRepository.findByName(gameName);
-        Player player = playerRepository.findById(user.getId());
+        Player player = playerRepository.findByUserId(user.getId());
         playerDTO.setYourTurn(isYourTurn(game, player));
         playerDTO.setCards(getCards(game));
         publisher.publishEvent(playerDTO);

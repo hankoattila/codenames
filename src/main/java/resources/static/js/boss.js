@@ -4,11 +4,11 @@ $(function () {
     app.boss = {
         table: document.getElementById("table")
     };
-    doPoll()
+    setTable()
 });
 
 
-function doPoll() {
+function setTable() {
     $.post("http://localhost:44444/bossEdit", function (data) {
         let table = app.boss.table;
         let newTable = "<tr>";

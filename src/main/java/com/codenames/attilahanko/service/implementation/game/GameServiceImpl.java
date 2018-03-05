@@ -45,7 +45,8 @@ public class GameServiceImpl implements GameService, HandleGameRepository {
         } else {
             addUserToGame(newUser, game, httpServletRequest);
             gameRepository.save(game);
-            addToSession("user", newUser, httpServletRequest);
+            User savedUser = userRepository.findByName(newUser.getName());
+            addToSession("user", savedUser, httpServletRequest);
         }
         return "redirect:" + Path.Web.QUEUE;
     }
@@ -66,12 +67,9 @@ public class GameServiceImpl implements GameService, HandleGameRepository {
         Team teamTwo = game.getTeams().get(1);
         if (teamOne.getSize() >= teamTwo.getSize()) {
             teamTwo.addPlayer(player);
-            player.setTeam(teamTwo);
         } else {
             teamOne.addPlayer(player);
-            player.setTeam(teamOne);
         }
-
         user.setGame(game);
         addToSession("player", player, request);
         publisher.publishEvent(new QueueDTO(game.getTeams()));

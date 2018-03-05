@@ -66,6 +66,7 @@ public class Team {
 
     public void addPlayer(Player player) {
         players.add(player);
+        player.setTeam(this);
     }
 
     public Boss getBoss() {

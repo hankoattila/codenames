@@ -18,6 +18,6 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getPlayerByUser(User user) {
-        return playerRepository.findById(user.getId());
+        return playerRepository.findByUserId(user.getId());
     }
 }

@@ -4,7 +4,7 @@ $(function () {
     app.player = {
         table: document.getElementById("table")
     };
-    doPoll()
+    doPoll();
 });
 
 
@@ -23,6 +23,10 @@ function doPoll() {
         }
 
         table.innerHTML = newTable;
+        $("#table").on('click','td.card',function () {
+            console.log(this);
+            console.log(this.value);
+
+        });
     });
-    setTimeout(doPoll, 2000);
 }
