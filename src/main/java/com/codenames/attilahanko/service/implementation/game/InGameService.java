@@ -100,6 +100,8 @@ public class InGameService implements HandleGameRepository {
     }
 
     private boolean isYourTurn(Game game, Player player) {
+        System.out.println(player);
+        System.out.println(player.getTeam());
         return game.getCurrentTeam().equals(player.getTeam().getName());
     }
 

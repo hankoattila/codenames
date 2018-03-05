@@ -1,22 +1,23 @@
-package com.codenames.attilahanko.service.implementation.player;
+package com.codenames.attilahanko.service.implementation;
 
 import com.codenames.attilahanko.model.player.Player;
 import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.repository.PlayerRepository;
-import com.codenames.attilahanko.service.PlayerService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PlayerServiceImpl implements PlayerService {
+public class PlayerService {
 
     private PlayerRepository playerRepository;
 
-    public PlayerServiceImpl(PlayerRepository playerRepository) {
+    public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
 
+    public Player findOne(Long id){
+        return playerRepository.findOne(id);
+    }
 
-    @Override
     public Player getPlayerByUser(User user) {
         return playerRepository.findByUserId(user.getId());
     }

@@ -7,6 +7,7 @@ import com.codenames.attilahanko.model.player.PlayerDTO;
 import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.service.GameService;
 import com.codenames.attilahanko.service.implementation.game.InGameService;
+import com.codenames.attilahanko.service.implementation.GameServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +18,6 @@ import java.util.List;
 
 @Controller
 public class InGameController {
-
 
 
     private GameService gameService;
@@ -32,7 +32,7 @@ public class InGameController {
     @ResponseBody
     public List<List<String>> queueEdit(HttpServletRequest httpServletRequest) {
         String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
-        Game game = gameService.getGameByName(gameName);
+        Game game = gameService.findByName(gameName);
         List<List<String>> players = new ArrayList<>();
         for (Team team : game.getTeams()) {
             List<String> playersName = new ArrayList<>();
@@ -48,7 +48,7 @@ public class InGameController {
     @ResponseBody
     public List<String> bossEdit(HttpServletRequest httpServletRequest) {
         String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
-        Game game = gameService.getGameByName(gameName);
+        Game game = gameService.findByName(gameName);
         return game.getBoard().getRoles();
     }
 

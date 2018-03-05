@@ -35,7 +35,7 @@ public class GameController {
         }
 
         String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
-        Game game = gameService.getGameByName(gameName);
+        Game game = gameService.findByName(gameName);
         model.addAttribute("board", game.getBoard().getCards());
         return Path.Template.BOSS;
     }
@@ -46,7 +46,7 @@ public class GameController {
         if (httpServletRequest.getSession().getAttribute("player") == null) {
             return "redirect:" + Path.Web.BOSS;
         }
-        Game game = gameService.getGameByName(gameName);
+        Game game = gameService.findByName(gameName);
         model.addAttribute("board", game.getBoard().getCards());
 
         return Path.Template.PLAYER;
