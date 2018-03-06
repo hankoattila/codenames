@@ -26,23 +26,21 @@ public class Game {
     @OneToOne(cascade = CascadeType.ALL)
     private Board board;
 
-    private String currentTeam;
-
-
-    public Game() {
-        Team blue = new Team("Blue");
-        Team red = new Team("Red");
-        blue.setPicture("/pictures/panda.jpg");
-        red.setPicture("/pictures/unicorn.jpg");
-        addTeam(blue);
-        addTeam(red);
-        Board board = new Board();
-        this.board = board;
-        board.setGame(this);
-        currentTeam = blue.getName();
-    }
+    private String currentTeamName;
 
     private boolean isGameActive = false;
+
+    public Game() {
+    }
+
+    public Game(String name, Team blue, Team red, Board board) {
+        this.name = name;
+        this.board = board;
+        addTeam(blue);
+        addTeam(red);
+        currentTeamName = blue.getName();
+    }
+
 
     public Long getId() {
         return id;
@@ -54,10 +52,6 @@ public class Game {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
     }
 
     public List<Team> getTeams() {
@@ -92,15 +86,21 @@ public class Game {
         return isGameActive;
     }
 
-    public void setGameActive(boolean gameActive) {
-        isGameActive = gameActive;
+    public void setGameActive() {
+        isGameActive = true;
     }
 
-    public String getCurrentTeam() {
-        return currentTeam;
+    public String getCurrentTeamName() {
+        return currentTeamName;
     }
 
-    public void setCurrentTeam(String currentTeam) {
-        this.currentTeam = currentTeam;
+    public void nextTeam() {
+        for (int i = 0; i < teams.size() - 1; i++) {
+            if (teams.get(i).getName().equals(currentTeamName)) {
+                currentTeamName = teams.get(i + 1).getName();
+                return;
+            }
+        }
+        currentTeamName = teams.get(0).getName();
     }
 }

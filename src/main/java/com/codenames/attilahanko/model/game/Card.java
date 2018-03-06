@@ -14,7 +14,6 @@ public class Card {
 
     private String value;
 
-    private String color;
 
     private boolean isFlopped = false;
 
@@ -33,13 +32,6 @@ public class Card {
         this.value = value;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public boolean isFlopped() {
         return isFlopped;

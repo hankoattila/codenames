@@ -1,5 +1,6 @@
 package com.codenames.attilahanko.controller;
 
+import com.codenames.attilahanko.model.game.Card;
 import com.codenames.attilahanko.model.game.Game;
 import com.codenames.attilahanko.model.game.Team;
 import com.codenames.attilahanko.model.player.Player;
@@ -28,22 +29,6 @@ public class InGameController {
         this.inGameService = inGameService;
     }
 
-    @PostMapping("/queueEdit")
-    @ResponseBody
-    public List<List<String>> queueEdit(HttpServletRequest httpServletRequest) {
-        String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
-        Game game = gameService.findByName(gameName);
-        List<List<String>> players = new ArrayList<>();
-        for (Team team : game.getTeams()) {
-            List<String> playersName = new ArrayList<>();
-            for (Player player : team.getPlayers()) {
-                playersName.add(player.getUser().getName());
-            }
-            players.add(playersName);
-        }
-        return players;
-    }
-
     @PostMapping("/bossEdit")
     @ResponseBody
     public List<String> bossEdit(HttpServletRequest httpServletRequest) {
@@ -54,10 +39,10 @@ public class InGameController {
 
     @PostMapping("/playerEdit")
     @ResponseBody
-    public PlayerDTO playerEdit(HttpServletRequest httpServletRequest) {
+    public List<Card> playerEdit(HttpServletRequest httpServletRequest) {
         String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
-        User user = (User) httpServletRequest.getSession().getAttribute("user");
-        return inGameService.handlePlayerPoll(gameName, user);
+        Game game = gameService.findByName(gameName);
+        return game.getBoard().getCards();
     }
 
 }

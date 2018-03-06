@@ -1,5 +1,6 @@
 package com.codenames.attilahanko.configuration;
 
+import com.codenames.attilahanko.model.game.Board;
 import com.codenames.attilahanko.model.game.Card;
 import com.codenames.attilahanko.model.game.Game;
 import com.codenames.attilahanko.model.game.Team;
@@ -18,8 +19,12 @@ import java.util.List;
 public class Init {
 
     public Init(GameRepository gameRepository, CardRepository cardRepository) {
-        Game game = new Game();
-        game.setName("TestRoom");
+        Team blue = new Team("Blue");
+        Team red = new Team("Red");
+        blue.setPicture("/pictures/panda.jpg");
+        red.setPicture("/pictures/unicorn.jpg");
+        Board board = new Board();
+        Game game = new Game("TestRoom",blue, red,board);
         List<User> users = createUsers();
         int index = 0;
 
@@ -35,8 +40,7 @@ public class Init {
             team.addPlayer(player);
             user.setGame(game);
         }
-        User user = new User();
-        user.setName("BossTwo");
+        User user = new User("BossTwo");
         user.setGame(game);
         Boss boss = new Boss(user);
         game.getTeams().get(1).setBoss(boss);
@@ -50,32 +54,8 @@ public class Init {
         user1.setName("Attila");
         User user2 = new User();
         user2.setName("user2");
-        User user3 = new User();
-        user3.setName("user3");
-        User user4 = new User();
-        user4.setName("user4");
-        User user5 = new User();
-        user5.setName("user5");
-        User user6 = new User();
-        user6.setName("user6");
-        User user7 = new User();
-        user7.setName("user7");
-        User user8 = new User();
-        user8.setName("user8");
-        User user9 = new User();
-        user9.setName("user9");
-        User user10 = new User();
-        user10.setName("user10");
         users.add(user1);
         users.add(user2);
-        users.add(user3);
-        users.add(user4);
-        users.add(user5);
-        users.add(user6);
-        users.add(user7);
-        users.add(user8);
-        users.add(user9);
-        users.add(user10);
         return users;
     }
 

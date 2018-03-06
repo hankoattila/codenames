@@ -1,5 +1,7 @@
 package com.codenames.attilahanko.service.implementation;
 
+import com.codenames.attilahanko.model.game.Board;
+import com.codenames.attilahanko.model.game.Card;
 import com.codenames.attilahanko.model.game.Game;
 import com.codenames.attilahanko.model.game.Team;
 import com.codenames.attilahanko.model.player.Boss;
@@ -9,15 +11,20 @@ import com.codenames.attilahanko.service.GameService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class CreateGameService {
 
     private GameService gameService;
     private UserService userService;
+    private CardService cardService;
 
-    public CreateGameService(GameService gameService, UserService userService) {
+    public CreateGameService(GameService gameService, UserService userService, CardService cardService) {
         this.gameService = gameService;
         this.userService = userService;
+        this.cardService = cardService;
     }
 
     public void createGame(Game game) {
@@ -44,9 +51,8 @@ public class CreateGameService {
         return userService.save(user);
     }
 
-    public String addUser(User user, String gameName) {
+    public String addUser(User user, Game game) {
         String role;
-        Game game = gameService.findByName(gameName);
         Team teamA = game.getTeams().get(0);
         Team teamB = game.getTeams().get(1);
         if (teamA.getBoss() == null) {
@@ -65,5 +71,15 @@ public class CreateGameService {
 
         gameService.save(game);
         return role;
+    }
+
+    public void start(Game game) {
+        List<Card> cards = cardService.findAll();
+        Collections.shuffle(cards);
+        Board board = game.getBoard();
+        for (Card card : cards) {
+            board.addCard(card);
+        }
+        game.setGameActive();
     }
 }

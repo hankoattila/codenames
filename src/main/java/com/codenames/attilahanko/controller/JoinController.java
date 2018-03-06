@@ -1,12 +1,13 @@
 package com.codenames.attilahanko.controller;
 
+import com.codenames.attilahanko.event.queue.QueueDTO;
 import com.codenames.attilahanko.model.game.Game;
 import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.service.GameService;
 import com.codenames.attilahanko.service.implementation.CreateGameService;
 import com.codenames.attilahanko.service.implementation.UserService;
 import com.codenames.attilahanko.utils.Path;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +21,17 @@ public class JoinController {
     private GameService gameService;
     private UserService userService;
     private CreateGameService createGameService;
+    private ApplicationEventPublisher publisher;
 
 
     public JoinController(GameService gameService,
                           UserService userService,
-                          CreateGameService createGameService) {
+                          CreateGameService createGameService,
+                          ApplicationEventPublisher publisher) {
         this.gameService = gameService;
         this.userService = userService;
         this.createGameService = createGameService;
+        this.publisher = publisher;
     }
 
     @GetMapping({Path.Web.INDEX, Path.Web.ENTER})
@@ -40,7 +44,7 @@ public class JoinController {
     public String handleEnterPage(@ModelAttribute("game-name") String gameName, HttpServletRequest httpServletRequest) {
         Game game = gameService.findByName(gameName);
         if (game == null) {
-            throw new UsernameNotFoundException("Invalid");
+            return "redirect:" + Path.Web.ENTER + "?error";
         } else {
             httpServletRequest.getSession().setAttribute("game-name", game.getName());
         }
@@ -64,14 +68,15 @@ public class JoinController {
     @PostMapping(Path.Web.NICKNAME)
     public String handleSelectName(@ModelAttribute User modelUser, HttpServletRequest httpServletRequest) {
         String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
+        Game game = gameService.findByName(gameName);
         User user = userService.findByName(modelUser.getName());
         if (user == null) {
             user = createGameService.createUser(modelUser.getName(), gameName);
         }
-        String role = createGameService.addUser(user, gameName);
+        String role = createGameService.addUser(user, game);
         httpServletRequest.getSession().setAttribute("user", user);
         httpServletRequest.getSession().setAttribute(role, user);
-
+        publisher.publishEvent(new QueueDTO(game.getTeams()));
         return "redirect:" + Path.Web.QUEUE;
 
     }

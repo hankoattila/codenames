@@ -56,7 +56,6 @@ public class Board {
 
     public void addCard(Card card) {
         cards.add(card);
-        card.setColor(roles.get(cards.size() - 1));
     }
 
     public List<String> getRoles() {

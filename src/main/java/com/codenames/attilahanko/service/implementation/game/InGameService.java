@@ -75,7 +75,7 @@ public class InGameService implements HandleGameRepository {
         String gameName = getGameName(request);
         String role = request.getSession().getAttribute("player") == null ? "boss" : "player";
         Game game = getGameByName(gameName);
-        game.setGameActive(true);
+        game.setGameActive();
         List<Card> cards = cardRepository.findAll();
         for (Card card : cards) {
             game.getBoard().addCard(card);
@@ -100,9 +100,7 @@ public class InGameService implements HandleGameRepository {
     }
 
     private boolean isYourTurn(Game game, Player player) {
-        System.out.println(player);
-        System.out.println(player.getTeam());
-        return game.getCurrentTeam().equals(player.getTeam().getName());
+        return game.getCurrentTeamName().equals(player.getTeam().getName());
     }
 
     private String getGameName(HttpServletRequest request) {
