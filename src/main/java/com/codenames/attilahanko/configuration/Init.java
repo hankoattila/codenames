@@ -24,6 +24,7 @@ public class Init {
         blue.setPicture("/pictures/panda.jpg");
         red.setPicture("/pictures/unicorn.jpg");
         Board board = new Board();
+        System.out.println(board);
         Game game = new Game("TestRoom",blue, red,board);
         List<User> users = createUsers();
         int index = 0;
@@ -60,9 +61,31 @@ public class Init {
     }
 
     private void generateCards(CardRepository cardRepository) {
-        for (int i = 0; i < 25; i++) {
-            Card card = new Card("card" + i);
-            cardRepository.save(card);
-        }
+        cardRepository.save(new Card("MŰ"));
+        cardRepository.save(new Card("KERESZT"));
+        cardRepository.save(new Card("KÁRPÁTOK"));
+        cardRepository.save(new Card("SAJT"));
+        cardRepository.save(new Card("PISZTOLY"));
+        cardRepository.save(new Card("GITÁR"));
+        cardRepository.save(new Card("FÜGG"));
+        cardRepository.save(new Card("SZÜREK"));
+        cardRepository.save(new Card("HÍD"));
+        cardRepository.save(new Card("HAJÓ"));
+        cardRepository.save(new Card("KIRÁLY"));
+        cardRepository.save(new Card("LAP"));
+        cardRepository.save(new Card("ÓRIÁS"));
+        cardRepository.save(new Card("ADÓ"));
+        cardRepository.save(new Card("MÉREG"));
+        cardRepository.save(new Card("MALAC"));
+        cardRepository.save(new Card("MOSZKVA"));
+        cardRepository.save(new Card("MOSZKVA"));
+        cardRepository.save(new Card("NEW YORK"));
+        cardRepository.save(new Card("KORONA"));
+        cardRepository.save(new Card("NAPÓLEON"));
+        cardRepository.save(new Card("CSÖPP"));
+        cardRepository.save(new Card("KOR"));
+        cardRepository.save(new Card("PÉNZ"));
+        cardRepository.save(new Card("MŰHOLD"));
+
     }
 }

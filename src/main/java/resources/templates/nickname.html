@@ -1,29 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" layout:decorator="layouts/layout" xmlns:layout="http://www.w3.org/1999/xhtml"
+<html lang="en" layout:decorator="layouts/index" xmlns:layout="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
 
+<div layout:fragment="loginContent" class="wrap-login100">
+    <form class="login100-form validate-form" th:action="@{/nickname}" th:object="${user}" method="post">
+        <span class="login100-form-title p-b-48">
+						<img th:src="@{~/pictures/background/name.png}">
+					</span>
+        <span class="login100-form-title p-b-26" th:text="${'Game: ' + session.gameName}">
+						Invalid Room
+					</span>
 
-<div layout:fragment="loginContent">
-    <h1>Please Select NickName</h1>
-    <form th:action="@{/nickname}" th:object="${user}" method="post">
-        <div th:each="error: ${errors}" th:text="${error}">
-
+        <div class="wrap-input100 validate-input">
+            <input class="input100" type="text" name="roomName" id="roomName" th:field="*{name}" required="true">
+            <span class="focus-input100" data-placeholder="Your Nickname"></span>
         </div>
 
-        <div th:if="${param.logout}">
-            Logout done
+
+        <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button type="submit" class="login100-form-btn">
+                    Select
+                </button>
+            </div>
         </div>
 
-        <input type="text" name="roomName" id="roomName" th:field="*{name}" required="true"/><br/>
-        <button type="submit" value="Submit">Select</button>
+        <div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
+
+            <a class="txt2" href="#">
+                Sign Up
+            </a>
+        </div>
     </form>
-    <br/>
 </div>
 
-</body>
+
 </html>

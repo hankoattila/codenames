@@ -16,15 +16,13 @@
 }
 
 .card {
-
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 
 }
-
-.td {
+td {
     margin: 300px;
     height: 150px;
 }

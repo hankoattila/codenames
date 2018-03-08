@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" layout:decorator="layouts/layout" xmlns:layout="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" layout:decorator="layouts/index"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 
 
-<div layout:fragment="loginContent">
-    <h1>Select Game</h1>
-    <div th:if="${param.error}">
-        Invalid Game Name
-    </div>
-    <div th:if="${param.logout}">
-        Logout Successful
-    </div>
-    <form th:action="@{/enter}" method="post" >
-        <input type="text" name="game-name" id="game-name"  required="true"/><br/>
-        <button type="submit" value="Submit">Enter</button>
+<div layout:fragment="loginContent" class="wrap-login100">
+    <form class="login100-form validate-form" th:action="@{/enter}" method="post">
+					<span class="login100-form-title p-b-26">
+						Welcome
+					</span>
+        <span class="login100-form-title p-b-48">
+						<img th:src="@{~/pictures/background/name.png}">
+					</span>
+
+        <div class="wrap-input100 validate-input">
+            <input class="input100" type="text" name="gameName" id="gameName" required="true">
+            <span class="focus-input100" data-placeholder="Game Name"></span>
+        </div>
+
+
+        <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button type="submit" class="login100-form-btn">
+                    Login
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
+
+            <a class="txt2" href="#">
+                Sign Up
+            </a>
+        </div>
     </form>
-    <br/>
 </div>
 
-</body>
 </html>
 

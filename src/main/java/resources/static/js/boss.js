@@ -12,7 +12,6 @@ function setTable() {
     $.post("http://localhost:44444/bossEdit", function (data) {
         let table = app.boss.table;
         let newTable = "<tr>";
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
             newTable += `<td class="card ${data[i]}"></td>`;
             if (i === data.length) {
@@ -21,7 +20,6 @@ function setTable() {
                 newTable += "</tr>";
             }
         }
-
         table.innerHTML = newTable;
     });
 }

@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-public class InGameController {
+public class AjaxRequestController {
 
 
     private GameService gameService;
 
 
-    public InGameController(GameService gameService) {
+    public AjaxRequestController(GameService gameService) {
         this.gameService = gameService;
 
     }
@@ -25,7 +25,7 @@ public class InGameController {
     @PostMapping("/bossEdit")
     @ResponseBody
     public List<String> bossEdit(HttpServletRequest httpServletRequest) {
-        String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
+        String gameName = (String) httpServletRequest.getSession().getAttribute("gameName");
         Game game = gameService.findByName(gameName);
         return game.getBoard().getRoles();
     }
@@ -33,7 +33,7 @@ public class InGameController {
     @PostMapping("/playerEdit")
     @ResponseBody
     public List<Card> playerEdit(HttpServletRequest httpServletRequest) {
-        String gameName = (String) httpServletRequest.getSession().getAttribute("game-name");
+        String gameName = (String) httpServletRequest.getSession().getAttribute("gameName");
         Game game = gameService.findByName(gameName);
         return game.getBoard().getCards();
     }

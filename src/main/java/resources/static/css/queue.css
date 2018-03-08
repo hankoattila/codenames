@@ -1,0 +1,24 @@
+html,body{
+    height: 100%;
+}
+
+.img-circle{
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+}
+
+.wrap-queue100{
+
+
+}
+
+.container-queue100{
+    background-image: url("../pictures/background/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}

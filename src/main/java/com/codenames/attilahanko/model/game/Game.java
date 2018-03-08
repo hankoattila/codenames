@@ -35,9 +35,9 @@ public class Game {
 
     public Game(String name, Team blue, Team red, Board board) {
         this.name = name;
-        this.board = board;
         addTeam(blue);
         addTeam(red);
+        setBoard(board);
         currentTeamName = blue.getName();
     }
 

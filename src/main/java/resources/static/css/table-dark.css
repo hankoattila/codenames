@@ -15,9 +15,6 @@
     height: 40px;
     width: 100px;
 }
-.boosters{
-    background-color: #1c1d26;
-}
 
 #pricing-table .plan {
     font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
@@ -70,7 +67,7 @@
     background-image: -webkit-linear-gradient(#fff, #eee);
     background-image: -o-linear-gradient(#fff, #eee);
     background-image: -ms-linear-gradient(#fff, #eee);
-    background-image: linear-gradient(rgba(103, 40, 51, 0.965), rgba(39, 40, 51, 0.965));
+    background-image: linear-gradient(rgb(117, 19, 70), rgb(165, 71, 44));
 }
 
 

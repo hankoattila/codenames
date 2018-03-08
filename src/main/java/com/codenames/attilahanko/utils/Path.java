@@ -22,7 +22,7 @@ public class Path {
         public static final String REGISTER = "register";
         public static final String NICKNAME = "nickname";
         public static final String CREATEGAME = "create-game";
-        public static final String QUEUE = "queue";
+        public static final String QUEUE = "newQueue";
         public static final String BOSS = "game/boss";
         public static final String PLAYER = "game/player";
 
