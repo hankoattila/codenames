@@ -18,7 +18,7 @@ public class PlayerService {
         return playerRepository.findOne(id);
     }
 
-    public Player getPlayerByUser(User user) {
-        return playerRepository.findByUserId(user.getId());
+    public Player getPlayerByUserId(Long id) {
+        return playerRepository.findByUserId(id);
     }
 }

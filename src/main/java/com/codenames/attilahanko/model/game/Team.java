@@ -89,4 +89,17 @@ public class Team {
     public int getSize() {
         return boss == null ? players.size() : players.size() + 1;
     }
+
+    public boolean isAllPlayerSelect() {
+        int selected = players.get(0).getSelected();
+        for (Player player : players) {
+            if (player.getSelected() != selected) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public int getSelected(){
+        return players.get(0).getSelected();
+    }
 }

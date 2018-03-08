@@ -2,6 +2,7 @@ package com.codenames.attilahanko.controller;
 
 import com.codenames.attilahanko.event.queue.QueueDTO;
 import com.codenames.attilahanko.model.game.Game;
+import com.codenames.attilahanko.model.player.Player;
 import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.service.GameService;
 import com.codenames.attilahanko.service.implementation.CreateGameService;

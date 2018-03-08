@@ -6,16 +6,20 @@ public class PlayerDTO {
 
     private boolean isYourTurn;
 
-    private List<List<String>> cards;
+    private List<CardDTO> cards;
 
     public PlayerDTO() {
     }
 
-    public List<List<String>> getCards() {
+    public PlayerDTO(List<CardDTO> cards) {
+        this.cards = cards;
+    }
+
+    public List<CardDTO> getCards() {
         return cards;
     }
 
-    public void setCards(List<List<String>> cards) {
+    public void setCards(List<CardDTO> cards) {
         this.cards = cards;
     }
 

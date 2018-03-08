@@ -24,7 +24,6 @@ public class Init {
         blue.setPicture("/pictures/panda.jpg");
         red.setPicture("/pictures/unicorn.jpg");
         Board board = new Board();
-        System.out.println(board);
         Game game = new Game("TestRoom",blue, red,board);
         List<User> users = createUsers();
         int index = 0;

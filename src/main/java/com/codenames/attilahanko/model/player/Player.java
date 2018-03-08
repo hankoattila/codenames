@@ -21,6 +21,8 @@ public class Player {
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
+    private Integer selected;
+
     public Player() {
     }
 
@@ -43,5 +45,13 @@ public class Player {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Integer selected) {
+        this.selected = selected;
     }
 }

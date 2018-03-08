@@ -1,5 +1,6 @@
 package com.codenames.attilahanko.model.game;
 
+import com.codenames.attilahanko.model.player.Player;
 import com.codenames.attilahanko.model.player.UserAccount;
 
 import javax.persistence.*;
@@ -102,5 +103,13 @@ public class Game {
             }
         }
         currentTeamName = teams.get(0).getName();
+    }
+
+    public void setSelected(int index, Player player) {
+        if (player.getSelected() != null){
+            board.getCards().get(player.getSelected()).setSelected(false);
+        }
+        board.getCards().get(index).setSelected(true);
+        player.setSelected(index);
     }
 }

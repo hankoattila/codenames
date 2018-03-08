@@ -11,18 +11,23 @@
 }
 
 .card {
+    height: 100%;
+    width: 100%;
     background-image: url("../pictures/card/card.png");
 
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
+}
+.select{
+    border: solid blue;
 }
 
 .td {
-    width: 183px;
+    width: 100px;
     height: 120px;
+
 }
 
 html, body {

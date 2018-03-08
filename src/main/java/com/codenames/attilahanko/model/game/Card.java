@@ -16,6 +16,7 @@ public class Card {
 
 
     private boolean isFlopped = false;
+    private boolean isSelected = false;
 
     public Card() {
     }
@@ -39,5 +40,13 @@ public class Card {
 
     public void setFlopped(boolean flopped) {
         isFlopped = flopped;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }
