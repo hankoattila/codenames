@@ -20,19 +20,7 @@ public class Board {
     @OrderColumn
     private List<Card> cards = new ArrayList<>();
 
-
-    @ElementCollection
-    private List<String> roles;
-
     public Board() {
-        roles = Arrays.asList(
-                "blue", "red", "blue", "grey", "grey",
-                "blue", "red", "grey", "grey", "grey",
-                "blue", "red", "grey", "grey", "grey",
-                "blue", "red", "black", "grey", "grey",
-                "blue", "red", "grey", "grey", "grey"
-        );
-        Collections.shuffle(roles);
     }
 
     @JsonIgnore
@@ -57,14 +45,6 @@ public class Board {
 
     public void addCard(Card card) {
         cards.add(card);
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
     }
 
     @Override

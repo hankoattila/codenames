@@ -20,12 +20,9 @@ public class Init {
         blue.setPicture("/pictures/panda.jpg");
         red.setPicture("/pictures/unicorn.jpg");
         Board board = new Board();
-        Game game = new Game("TestRoom", blue, red, board);
+        UserAccount userAccount = new UserAccount("Attila","1234");
+        Game game = new Game(userAccount, "TestRoom", blue, red, board);
 
-        UserAccount userAccount = new UserAccount();
-        userAccount.setName("Attila");
-        userAccount.setName("1234");
-        game.setHost(userAccount);
         User user = new User("BossTwo");
         user.setGame(game);
         Boss boss = new Boss(user);

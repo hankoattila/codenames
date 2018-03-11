@@ -15,7 +15,7 @@ public class Card {
     private String value;
 
 
-    private boolean isFlopped = false;
+    private boolean isFlipped = false;
     private boolean isSelected = false;
 
     public Card() {
@@ -34,12 +34,12 @@ public class Card {
     }
 
 
-    public boolean isFlopped() {
-        return isFlopped;
+    public boolean isFlipped() {
+        return isFlipped;
     }
 
-    public void setFlopped(boolean flopped) {
-        isFlopped = flopped;
+    public void setFlipped(boolean flipped) {
+        isFlipped = flipped;
     }
 
     public boolean isSelected() {

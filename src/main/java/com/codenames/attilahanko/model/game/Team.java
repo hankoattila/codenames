@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "teams")
-public class Team {
+public final class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -90,7 +90,7 @@ public class Team {
         return boss == null ? players.size() : players.size() + 1;
     }
 
-    public boolean isAllPlayerSelect() {
+    public boolean isDecision() {
         int selected = -1;
         for (Player player : players) {
             if (player.getSelected() != null) {

@@ -2,7 +2,6 @@ package com.codenames.attilahanko.event;
 
 
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,5 +12,10 @@ public class EventPublisher {
     public EventPublisher(ApplicationEventPublisher publisher) {
         this.publisher = publisher;
     }
+
+    public void publishEvent(Object object) {
+        publisher.publishEvent(object);
+    }
+
 
 }

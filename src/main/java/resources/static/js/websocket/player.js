@@ -4,7 +4,11 @@ function connect() {
     host = document.location.host;
     ws = new WebSocket("ws://" + host + "/socket/player");
     ws.onmessage = function (data) {
-        showGreeting(data.data);
+        try {
+            showGreeting(data.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 }
 
@@ -18,12 +22,16 @@ function disconnect() {
 function showGreeting(data) {
     $(".card").removeClass("select");
     let CardSelected = JSON.parse(data);
-    let listOfIndex = CardSelected.listOfIndex;
-    let colors = CardSelected.colors;
+    let listOfIndex = CardSelected.selected;
+    let color = CardSelected.color;
     for (let i = 0; i < listOfIndex.length; i++) {
         let id = "#w" + listOfIndex[i];
-        $(id).addClass("select");
-        $(id).addClass(colors[listOfIndex[i]]);
+        if (color !== "") {
+            $(id).addClass(color);
+            $(id).html("");
+        } else {
+            $(id).addClass("select");
+        }
     }
 
 }
