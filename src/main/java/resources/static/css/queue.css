@@ -10,7 +10,11 @@ html,body{
 
 .wrap-queue100{
 
+}
 
+.queue-you{
+    border-bottom-style: solid;
+    border-bottom-color: greenyellow;
 }
 
 .container-queue100{

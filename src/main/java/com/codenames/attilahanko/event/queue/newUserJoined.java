@@ -6,10 +6,10 @@ import com.codenames.attilahanko.model.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QueueDTO {
+public class newUserJoined {
     private List<TeamDTO> teams = new ArrayList<>();
 
-    public QueueDTO(List<Team> teams) {
+    public newUserJoined(List<Team> teams) {
         createTeamDTO(teams, 0);
         createTeamDTO(teams, 1);
 

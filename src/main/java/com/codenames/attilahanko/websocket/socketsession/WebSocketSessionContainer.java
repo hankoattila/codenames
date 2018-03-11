@@ -3,6 +3,8 @@ package com.codenames.attilahanko.websocket.socketsession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 

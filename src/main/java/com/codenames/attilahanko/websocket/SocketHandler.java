@@ -6,6 +6,8 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Component
 public class SocketHandler extends TextWebSocketHandler {
 
@@ -13,7 +15,6 @@ public class SocketHandler extends TextWebSocketHandler {
 
     public SocketHandler(SetWebSocketSession setWebSocketSession) {
         this.setWebSocketSession = setWebSocketSession;
-
     }
 
     @Override

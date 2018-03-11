@@ -1,19 +1,21 @@
 var app = app || {};
+var sending = false;
 
 $(function () {
     app.player = {
         table: document.getElementById('table')
     };
-    getCards();
+    let url = 'http://localhost:44444/playerEdit';
+    getCards(url);
 });
 
 
-function getCards() {
-    $.post('http://localhost:44444/playerEdit', function (data) {
+function getCards(url) {
+    $.post(url, function (data) {
         let table = app.player.table;
-        let newTable = '<tr>';
         let cards = data;
         let length = cards.length;
+        let newTable = '<tr>';
         for (let i = 0; i < length; i++) {
             newTable += `<td><div id='w${i}' class='card `;
             if (cards[i].selected) {
@@ -28,28 +30,30 @@ function getCards() {
         }
 
         table.innerHTML = newTable;
-        $('#table').on('click', 'td.card', function () {
-            console.log(this);
-            console.log(this.value);
-
-        });
         addClick();
     });
 }
 
 function addClick() {
-    $(app.player.table).on('click', '.card', function () {
-        $("#table>tbody>tr>td>div.select").removeClass("select");
-        $(this).addClass("select");
-        var idOfselected = this.id.replace("w", "");
-        sendSelect(idOfselected);
-    });
+    $(app.player.table).on('click', '.card', sendData);
+}
+
+function sendData() {
+    if (sending) {
+        return;
+    }
+    sending = true;
+    $("#table>tbody>tr>td>div.select").removeClass("select");
+    $(this).addClass("select");
+    var idOfselected = this.id.replace("w", "");
+    sendSelect(idOfselected);
 }
 
 function sendSelect(id) {
     $.post('http://localhost:44444/selectCard', {"id": id}, function (data) {
-        console.log("ok");
+    sending = false;
     }).fail(function () {
+        sending = false;
         console.log("error");
     });
 }

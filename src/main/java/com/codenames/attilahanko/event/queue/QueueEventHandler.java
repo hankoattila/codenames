@@ -20,9 +20,9 @@ public class QueueEventHandler {
     }
 
     @EventListener
-    public void addNewPlayer(QueueDTO queueDTO) throws IOException {
+    public void addNewPlayer(newUserJoined newUserJoined) throws IOException {
         for (WebSocketSession session : sessions) {
-            session.sendMessage(new TextMessage(new Gson().toJson(queueDTO)));
+            session.sendMessage(new TextMessage(new Gson().toJson(newUserJoined)));
         }
     }
 }

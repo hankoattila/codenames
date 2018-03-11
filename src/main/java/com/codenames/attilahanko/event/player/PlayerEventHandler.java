@@ -20,9 +20,11 @@ public class PlayerEventHandler {
     }
 
     @EventListener
-    public void editBoard(PlayerDTO playerDTO) throws IOException {
+    public void editBoard(CardSelected CardSelected) throws IOException {
+        // TODO: 2018.03.09. Should change, and handle TEXT_PARTIAL_WRITING exception
         for (WebSocketSession session : sessions) {
-            session.sendMessage(new TextMessage(new Gson().toJson(playerDTO)));
+            String yourTeam = (String) session.getAttributes().get("team");
+            session.sendMessage(new TextMessage(new Gson().toJson(CardSelected)));
         }
     }
 }

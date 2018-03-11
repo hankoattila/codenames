@@ -1,5 +1,6 @@
 package com.codenames.attilahanko.service.implementation;
 
+import com.codenames.attilahanko.event.queue.newUserJoined;
 import com.codenames.attilahanko.model.game.Board;
 import com.codenames.attilahanko.model.game.Card;
 import com.codenames.attilahanko.model.game.Game;
@@ -8,6 +9,7 @@ import com.codenames.attilahanko.model.player.Boss;
 import com.codenames.attilahanko.model.player.Player;
 import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.service.GameService;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,20 @@ public class CreateGameService {
 
     private GameService gameService;
     private UserService userService;
+    private PlayerService playerService;
     private CardService cardService;
+    private ApplicationEventPublisher publisher;
 
-    public CreateGameService(GameService gameService, UserService userService, CardService cardService) {
+    public CreateGameService(GameService gameService,
+                             UserService userService,
+                             PlayerService playerService,
+                             CardService cardService,
+                             ApplicationEventPublisher publisher) {
         this.gameService = gameService;
         this.userService = userService;
+        this.playerService = playerService;
         this.cardService = cardService;
+        this.publisher = publisher;
     }
 
     public void createGame(Game game) {
@@ -70,6 +80,7 @@ public class CreateGameService {
         }
 
         gameService.save(game);
+        publisher.publishEvent(new newUserJoined(game.getTeams()));
         return role;
     }
 
@@ -82,4 +93,13 @@ public class CreateGameService {
         }
         game.setGameActive();
     }
+
+    public String getTeamName(User user, String role) {
+        if (role.equals("player")) {
+            return playerService.getPlayerByUserId(user.getId()).getTeam().getName();
+        }
+        // TODO: 2018.03.09. Get team name of boss;
+        return "teamName";
+    }
 }
+

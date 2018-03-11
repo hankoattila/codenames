@@ -1,7 +1,6 @@
 package com.codenames.attilahanko.model.game;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.tomcat.util.digester.ArrayStack;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class Board {
     private Long id;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OrderColumn
     private List<Card> cards = new ArrayList<>();
 
@@ -70,8 +69,8 @@ public class Board {
 
     @Override
     public String toString() {
-        StringBuilder board= new StringBuilder();
-        for (Card card: cards){
+        StringBuilder board = new StringBuilder();
+        for (Card card : cards) {
             board.append(card.getValue() + " ");
         }
         return board.toString();

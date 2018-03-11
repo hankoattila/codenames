@@ -12,7 +12,12 @@
 						<img th:src="@{~/pictures/background/name.png}">
 					</span>
 
-        <div class="wrap-input100 validate-input">
+        <div th:if="${param.error == null}" class="wrap-input100 validate-input">
+            <input class="input100" type="text" name="gameName" id="gameName" required="true" autofocus="true" th:value="TestRoom">
+            <span class="focus-input100" data-placeholder="Game Name"></span>
+        </div>
+        <div th:if="${param.error != null}" class="wrap-input100 validate-input alert-validate"
+             data-validate="Invalid Game Name">
             <input class="input100" type="text" name="gameName" id="gameName" required="true" autofocus="true">
             <span class="focus-input100" data-placeholder="Game Name"></span>
         </div>

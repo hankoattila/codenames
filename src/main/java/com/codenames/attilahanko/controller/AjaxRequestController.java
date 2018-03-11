@@ -1,10 +1,8 @@
 package com.codenames.attilahanko.controller;
 
-import com.codenames.attilahanko.event.player.CardDTO;
-import com.codenames.attilahanko.event.player.PlayerDTO;
+import com.codenames.attilahanko.event.player.CardSelected;
 import com.codenames.attilahanko.model.game.Card;
 import com.codenames.attilahanko.model.game.Game;
-import com.codenames.attilahanko.model.game.Team;
 import com.codenames.attilahanko.model.player.Player;
 import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.service.GameService;
@@ -18,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AjaxRequestController {
@@ -65,32 +65,27 @@ public class AjaxRequestController {
     @ResponseBody
     public String selectCard(HttpServletRequest httpServletRequest, @ModelAttribute("id") int id) {
         User user = (User) httpServletRequest.getSession().getAttribute("player");
+        String gameName = (String) httpServletRequest.getSession().getAttribute("gameName");
         if (user != null) {
-            String gameName = (String) httpServletRequest.getSession().getAttribute("gameName");
-            saveSelect(id, user, gameName);
-
+            Game game = gameService.findByName(gameName);
+            Player player = playerService.getPlayerByUserId(user.getId());
+            game.setSelected(id, player);
+            List<Player> players = player.getTeam().getPlayers();
+            List<Integer> listOfIndex = new ArrayList<>();
+            Map<Integer, String> colors = new HashMap<>();
+            for (Player player1 : players) {
+                if (player.getSelected() != null) {
+                    listOfIndex.add(player1.getSelected());
+                }
+            }
+            gameService.save(game);
+            if (player.getTeam().isAllPlayerSelect()) {
+                colors.put(id, game.getBoard().getRoles().get(id));
+            }
+            publisher.publishEvent(new CardSelected(listOfIndex, colors));
         }
         return "ok";
     }
 
-    private void saveSelect(@ModelAttribute("id") int index, User user, String gameName) {
-        Player player = playerService.getPlayerByUserId(user.getId());
-        Game game = gameService.findByName(gameName);
-        game.setSelected(index, player);
-        for (Team team : game.getTeams()) {
-            for (Player player1 : team.getPlayers()) {
-                if (player1.getSelected() != null) {
-                    game.getBoard().getCards().get(player1.getSelected()).setSelected(true);
-                }
-            }
-        }
-        List<CardDTO> cardDTOS = new ArrayList<>();
-        for (Card card : game.getBoard().getCards()) {
-            cardDTOS.add(new CardDTO(card.getValue(), card.isFlopped(), card.isSelected()));
-        }
-
-        publisher.publishEvent(new PlayerDTO(cardDTOS));
-        gameService.save(gameService.findByName(gameName));
-    }
 
 }

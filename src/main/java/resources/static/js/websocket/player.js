@@ -15,27 +15,17 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function showGreeting(message) {
-    let playerDTO = JSON.parse(message);
-    let isYourTurn = playerDTO.isYourTurn;
-    let cards = playerDTO.cards;
-    console.log(cards);
-    let table = app.player.table;
-    let newTable = '<tr>';
-    let length = cards.length;
-    for (let i = 0; i < length; i++) {
-        newTable += `<td><div id='w${i}' class='card `;
-        if (cards[i].selected) {
-            newTable += ' select';
-        }
-        newTable += `'><span>${cards[i].value}</span></div></td>`;
-        if (i === cards.length) {
-            newTable += '<tr>';
-        } else if ((i + 1) % 5 === 0) {
-            newTable += '</tr>';
-        }
+function showGreeting(data) {
+    $(".card").removeClass("select");
+    let CardSelected = JSON.parse(data);
+    let listOfIndex = CardSelected.listOfIndex;
+    let colors = CardSelected.colors;
+    for (let i = 0; i < listOfIndex.length; i++) {
+        let id = "#w" + listOfIndex[i];
+        $(id).addClass("select");
+        $(id).addClass(colors[listOfIndex[i]]);
     }
-    table.innerHTML = newTable;
+
 }
 
 $(function () {

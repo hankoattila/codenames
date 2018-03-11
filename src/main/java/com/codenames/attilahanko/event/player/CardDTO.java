@@ -6,6 +6,10 @@ public class CardDTO {
     private String value;
     private boolean flopped;
     private boolean selected;
+    private String color;
+
+    public CardDTO() {
+    }
 
     public CardDTO(String value, boolean flopped, boolean selected) {
         this.value = value;
@@ -35,5 +39,9 @@ public class CardDTO {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

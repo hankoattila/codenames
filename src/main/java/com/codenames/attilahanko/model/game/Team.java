@@ -20,7 +20,7 @@ public class Team {
 
     private String picture;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Player> players = new ArrayList<>();
 
     @JsonIgnore
@@ -91,15 +91,25 @@ public class Team {
     }
 
     public boolean isAllPlayerSelect() {
-        int selected = players.get(0).getSelected();
+        int selected = -1;
         for (Player player : players) {
+            if (player.getSelected() != null) {
+                selected = player.getSelected();
+                break;
+            }
+        }
+        for (Player player : players) {
+            if (player.getSelected() == null) {
+                return false;
+            }
             if (player.getSelected() != selected) {
                 return false;
             }
         }
         return true;
     }
-    public int getSelected(){
+
+    public int getSelected() {
         return players.get(0).getSelected();
     }
 }

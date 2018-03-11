@@ -1,6 +1,6 @@
 package com.codenames.attilahanko.controller;
 
-import com.codenames.attilahanko.event.queue.QueueDTO;
+import com.codenames.attilahanko.event.queue.newUserJoined;
 import com.codenames.attilahanko.model.game.Game;
 import com.codenames.attilahanko.model.player.Player;
 import com.codenames.attilahanko.model.player.User;
@@ -22,17 +22,12 @@ public class JoinController {
     private GameService gameService;
     private UserService userService;
     private CreateGameService createGameService;
-    private ApplicationEventPublisher publisher;
 
 
-    public JoinController(GameService gameService,
-                          UserService userService,
-                          CreateGameService createGameService,
-                          ApplicationEventPublisher publisher) {
+    public JoinController(GameService gameService, UserService userService, CreateGameService createGameService) {
         this.gameService = gameService;
         this.userService = userService;
         this.createGameService = createGameService;
-        this.publisher = publisher;
     }
 
     @GetMapping({Path.Web.INDEX, Path.Web.ENTER})
@@ -74,10 +69,12 @@ public class JoinController {
         if (user == null) {
             user = createGameService.createUser(modelUser.getName(), gameName);
         }
+        // TODO: 2018.03.09. User name should be unique 
         String role = createGameService.addUser(user, game);
-        httpServletRequest.getSession().setAttribute("user", user);
+        String teamName = createGameService.getTeamName(user,role);
         httpServletRequest.getSession().setAttribute(role, user);
-        publisher.publishEvent(new QueueDTO(game.getTeams()));
+        httpServletRequest.getSession().setAttribute("user", user);
+        httpServletRequest.getSession().setAttribute("team", teamName);
         return "redirect:" + Path.Web.QUEUE;
 
     }
@@ -92,8 +89,8 @@ public class JoinController {
         if (user == null) {
             return "redirect:" + Path.Web.NICKNAME;
         }
-        Game game = gameService.findByName(gameName);
 
+        Game game = gameService.findByName(gameName);
         if (game.isGameActive()) {
             if (boss == null) {
                 return "redirect:" + Path.Web.BOSS;

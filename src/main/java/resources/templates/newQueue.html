@@ -26,7 +26,10 @@
                     </h3>
                     <h4 class="boss" th:if="${team.boss != null}"><span th:text="${'Boss: ' + team.boss.user.name + ' 🦄'}"></span></h4>
                     <ul class="player">
-                        <li th:each="player: ${team.players}" th:text="${player.user.name}"></li>
+                        <li th:each="player: ${team.players}">
+                           <span th:if="${session.user.name eq player.user.name}" class="queue-you"  th:text="${player.user.name}"></span>
+                           <span th:if="${session.user.name ne player.user.name}"  th:text="${player.user.name}"></span>
+                        </li>
                     </ul>
                 </div>
             </div>
