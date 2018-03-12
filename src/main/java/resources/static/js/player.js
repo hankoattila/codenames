@@ -1,5 +1,6 @@
 var app = app || {};
 var sending = false;
+var isYourTurn = true;
 
 $(function () {
     app.player = {
@@ -46,7 +47,11 @@ function sendData() {
     if (sending) {
         return;
     }
-    if ($(this).hasClass("red") || $(this).hasClass("blue") || $(this).hasClass("grey") || $(this).hasClass("black")) {
+    if ($(this).hasClass("red") ||
+        $(this).hasClass("blue") ||
+        $(this).hasClass("grey") ||
+        $(this).hasClass("black") ||
+        !isYourTurn) {
         return;
     }
     sending = true;

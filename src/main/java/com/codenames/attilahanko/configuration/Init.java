@@ -15,10 +15,8 @@ import org.springframework.stereotype.Component;
 public class Init {
 
     public Init(GameRepository gameRepository, CardRepository cardRepository) {
-        Team blue = new Team("Blue");
-        Team red = new Team("Red");
-        blue.setPicture("/pictures/panda.jpg");
-        red.setPicture("/pictures/unicorn.jpg");
+        Team blue = new Team("Blue","blue","/pictures/panda.jpg");
+        Team red = new Team("Red","red","/pictures/unicorn.jpg");
         Board board = new Board();
         UserAccount userAccount = new UserAccount("Attila","1234");
         Game game = new Game(userAccount, "TestRoom", blue, red, board);

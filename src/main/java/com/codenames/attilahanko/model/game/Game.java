@@ -45,7 +45,7 @@ public final class Game {
         addTeam(red);
         setBoard(board);
         setHost(host);
-        currentTeamName = blue.getName();
+        currentTeamName = red.getName();
         roles = Arrays.asList(
                 "blue", "blue", "red", "red", "grey",
                 "blue", "blue", "red", "black", "grey",

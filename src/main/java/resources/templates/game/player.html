@@ -13,7 +13,7 @@
 <h1>Player - <span th:text="${session.user.name}"></span></h1>
 
 <div class="container">
-    <table id="table">
+    <table id="table" th:style="${'border-style: solid;border-color:' + color}">
 
     </table>
 </div>

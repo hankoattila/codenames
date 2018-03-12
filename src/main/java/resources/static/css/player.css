@@ -25,14 +25,9 @@
 .black {
     background-image: url("../pictures/card/black.jpg");
 }
-.select{
+
+.select {
     border: solid blue;
-}
-
-.td {
-    width: 100px;
-    height: 120px;
-
 }
 
 html, body {
@@ -41,8 +36,13 @@ html, body {
 }
 
 div table {
-    height: 80%;
-    width: 80%;
+    height: 800px;
+    width: 100%;
+}
+
+td {
+    margin: 300px;
+    height: 150px;
 }
 
 .container {

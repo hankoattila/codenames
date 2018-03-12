@@ -22,6 +22,8 @@ function disconnect() {
 function showGreeting(data) {
     $(".card").removeClass("select");
     let CardSelected = JSON.parse(data);
+    isYourTurn = CardSelected.isYourTurn;
+
     let listOfIndex = CardSelected.selected;
     let color = CardSelected.color;
     for (let i = 0; i < listOfIndex.length; i++) {

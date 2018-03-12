@@ -1,5 +1,6 @@
 package com.codenames.attilahanko.event.queue;
 
+import com.codenames.attilahanko.event.StartGame;
 import com.codenames.attilahanko.websocket.socketsession.GetWebSocketSession;
 import com.google.gson.Gson;
 import org.springframework.context.event.EventListener;
@@ -23,6 +24,13 @@ public class QueueEventHandler {
     public void addNewPlayer(newUserJoined newUserJoined) throws IOException {
         for (WebSocketSession session : sessions) {
             session.sendMessage(new TextMessage(new Gson().toJson(newUserJoined)));
+        }
+    }
+
+    @EventListener
+    public void startGame(StartGame startGame) throws IOException {
+        for (WebSocketSession session : sessions) {
+            session.sendMessage(new TextMessage(new Gson().toJson(startGame)));
         }
     }
 }

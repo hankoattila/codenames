@@ -15,9 +15,13 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function showGreeting(data) {
-    let teams = JSON.parse(data).teams;
-    console.log(teams);
+function showGreeting(message) {
+    let data = JSON.parse(message);
+    let teams = data.teams;
+    let isGameActive = data.isGameActive;
+    if (isGameActive) {
+        location.reload();
+    }
     setBoss(teams[0], 0);
     setBoss(teams[1], 1);
     setPlayers(teams[0], 0);

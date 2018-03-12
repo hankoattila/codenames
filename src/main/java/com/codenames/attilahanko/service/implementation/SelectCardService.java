@@ -41,8 +41,13 @@ public class SelectCardService {
                     selectedCards.add(player1.getSelected());
                 }
             }
+            if (!color.equals("")) {
+                if (!color.equals(team.getColor())){
+                    game.nextTeam();
+                }
+            }
+            publisher.publishEvent(new CardSelected(selectedCards, color, true, game.getCurrentTeamName()));
 
-            publisher.publishEvent(new CardSelected(selectedCards, color));
             gameService.save(game);
 
         }

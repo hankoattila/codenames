@@ -18,6 +18,8 @@ public final class Team {
 
     private String name;
 
+    private String color;
+
     private String picture;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -35,8 +37,10 @@ public final class Team {
     public Team() {
     }
 
-    public Team(String teamName) {
+    public Team(String teamName, String color, String picture) {
         this.name = teamName;
+        this.color = color;
+        this.picture = picture;
 
     }
 
@@ -76,6 +80,22 @@ public final class Team {
     public void setBoss(Boss boss) {
         this.boss = boss;
         boss.setTeam(this);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getPicture() {

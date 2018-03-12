@@ -1,9 +1,13 @@
 package com.codenames.attilahanko.controller;
 
 
+import com.codenames.attilahanko.event.StartGame;
 import com.codenames.attilahanko.model.game.Game;
+import com.codenames.attilahanko.model.player.Player;
+import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.service.GameService;
 import com.codenames.attilahanko.service.implementation.CreateGameService;
+import com.codenames.attilahanko.service.implementation.PlayerService;
 import com.codenames.attilahanko.utils.Path;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
@@ -18,13 +22,16 @@ public class GameController {
 
     private GameService gameService;
     private CreateGameService createGameService;
+    private PlayerService playerService;
     private ApplicationEventPublisher publisher;
 
     public GameController(GameService gameService,
                           CreateGameService createGameService,
+                          PlayerService playerService,
                           ApplicationEventPublisher publisher) {
         this.gameService = gameService;
         this.createGameService = createGameService;
+        this.playerService = playerService;
         this.publisher = publisher;
     }
 
@@ -36,6 +43,7 @@ public class GameController {
         createGameService.start(game);
         gameService.save(game);
         // TODO: 2018.03.06. Should start game on player side without refresh
+        publisher.publishEvent(new StartGame(game.isGameActive()));
         return role.equals("boss") ? "redirect:" + Path.Web.BOSS : "redirect:" + Path.Web.PLAYER;
     }
 
@@ -57,6 +65,7 @@ public class GameController {
     @GetMapping(Path.Web.PLAYER)
     public String servePlayerPage(Model model, HttpServletRequest httpServletRequest) {
         String gameName = (String) httpServletRequest.getSession().getAttribute("gameName");
+        User user = (User) httpServletRequest.getSession().getAttribute("user");
         if (httpServletRequest.getSession().getAttribute("player") == null) {
             if (httpServletRequest.getSession().getAttribute("boss") == null) {
                 return "redirect:" + Path.Web.INDEX;
@@ -64,7 +73,9 @@ public class GameController {
             return "redirect:" + Path.Web.BOSS;
         }
         Game game = gameService.findByName(gameName);
+        Player player = playerService.getPlayerByUserId(user.getId());
         model.addAttribute("board", game.getBoard().getCards());
+        model.addAttribute("color", player.getTeam().getColor());
 
         return Path.Template.PLAYER;
     }
