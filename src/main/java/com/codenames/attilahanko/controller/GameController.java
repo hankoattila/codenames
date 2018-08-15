@@ -75,6 +75,7 @@ public class GameController {
         Game game = gameService.findByName(gameName);
         Player player = playerService.getPlayerByUserId(user.getId());
         model.addAttribute("board", game.getBoard().getCards());
+        model.addAttribute("team", game.getCurrentTeamName());
         model.addAttribute("color", player.getTeam().getColor());
 
         return Path.Template.PLAYER;

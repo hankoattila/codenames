@@ -22,6 +22,8 @@ public final class Team {
 
     private String picture;
 
+    private int cardLeft;
+
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Player> players = new ArrayList<>();
 
@@ -96,6 +98,14 @@ public final class Team {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public int getCardLeft() {
+        return cardLeft;
+    }
+
+    public void setCardLeft(int cardLeft) {
+        this.cardLeft = cardLeft;
     }
 
     public String getPicture() {

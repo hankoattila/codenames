@@ -1,12 +1,15 @@
 .card {
-    height: 100%;
-    width: 100%;
     background-image: url("../pictures/card/card.png");
-
+    text-align: center;
+    vertical-align: middle;
+    line-height: 125px;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 150px;
+    width: 100%;
+    border: 1px solid transparent;
 }
 
 .blue {
@@ -35,16 +38,39 @@ html, body {
     width: 100%;
 }
 
+table {
+    height: 800%;
+    width: 80%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 200px;
+}
+
+.container {
+    background-image: url("../pictures/background/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    html{
+        color: red;
+    }
+}
+
+h1 {
+    color: white;
+}
+
 div table {
-    height: 800px;
+    height: 600px;
     width: 100%;
 }
 
 td {
-    margin: 300px;
-    height: 150px;
-}
-
-.container {
-    height: 100%;
+    width: 20%;
 }

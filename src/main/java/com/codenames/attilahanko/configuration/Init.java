@@ -38,7 +38,7 @@ public class Init {
         cardRepository.save(new Card("PISZTOLY"));
         cardRepository.save(new Card("GITÁR"));
         cardRepository.save(new Card("FÜGG"));
-        cardRepository.save(new Card("SZÜREK"));
+        cardRepository.save(new Card("SZÜRET"));
         cardRepository.save(new Card("HÍD"));
         cardRepository.save(new Card("HAJÓ"));
         cardRepository.save(new Card("KIRÁLY"));
@@ -48,7 +48,7 @@ public class Init {
         cardRepository.save(new Card("MÉREG"));
         cardRepository.save(new Card("MALAC"));
         cardRepository.save(new Card("MOSZKVA"));
-        cardRepository.save(new Card("MOSZKVA"));
+        cardRepository.save(new Card("LABDA"));
         cardRepository.save(new Card("NEW YORK"));
         cardRepository.save(new Card("KORONA"));
         cardRepository.save(new Card("NAPÓLEON"));

@@ -29,25 +29,46 @@ public class SelectCardService {
         Player player = playerService.getPlayerByUserId(user.getId());
         if (player != null) {
             Team team = player.getTeam();
-            player.setSelected(selectedCardIndex);
             String color = "";
-            if (team.isDecision()) {
-                game.addFipped(selectedCardIndex);
-                color = game.getRoles().get(selectedCardIndex);
+            if (selectedCardIndex >= 0 && selectedCardIndex <= 24) {
+
+
+                player.setSelected(selectedCardIndex);
+                if (team.isDecision()) {
+                    game.addFipped(selectedCardIndex);
+                    color = game.getRoles().get(selectedCardIndex);
+                }
             }
+
+
             List<Integer> selectedCards = new ArrayList<>();
             for (Player player1 : team.getPlayers()) {
                 if (player1.getSelected() != null) {
                     selectedCards.add(player1.getSelected());
                 }
             }
+            String winnerTeam = "";
             if (!color.equals("")) {
-                if (!color.equals(team.getColor())){
+                if (color.equals("black")) {
+                    game.setGameOver(true);
+                    game.nextTeam();
+                    winnerTeam = game.getCurrentTeamName();
+
+                } else if (color.equals(team.getColor())) {
+                    team.setCardLeft(team.getCardLeft() - 1);
+                    if (team.getCardLeft() == 0) {
+                        game.setGameOver(true);
+                        winnerTeam = game.getCurrentTeamName();
+                    }
+                } else {
                     game.nextTeam();
                 }
             }
-            publisher.publishEvent(new CardSelected(selectedCards, color, true, game.getCurrentTeamName()));
-
+            publisher.publishEvent(new CardSelected(selectedCards,
+                    color,
+                    true,
+                    game.getCurrentTeamName(), game.isGameOver(),
+                    winnerTeam));
             gameService.save(game);
 
         }

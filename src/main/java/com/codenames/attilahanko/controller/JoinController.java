@@ -1,14 +1,11 @@
 package com.codenames.attilahanko.controller;
 
-import com.codenames.attilahanko.event.queue.newUserJoined;
 import com.codenames.attilahanko.model.game.Game;
-import com.codenames.attilahanko.model.player.Player;
 import com.codenames.attilahanko.model.player.User;
 import com.codenames.attilahanko.service.GameService;
 import com.codenames.attilahanko.service.implementation.CreateGameService;
 import com.codenames.attilahanko.service.implementation.UserService;
 import com.codenames.attilahanko.utils.Path;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,15 +60,17 @@ public class JoinController {
 
     @PostMapping(Path.Web.NICKNAME)
     public String handleSelectName(@ModelAttribute User modelUser, HttpServletRequest httpServletRequest) {
+        String role;
         String gameName = (String) httpServletRequest.getSession().getAttribute("gameName");
         Game game = gameService.findByName(gameName);
         User user = userService.findByName(modelUser.getName());
         if (user == null) {
             user = createGameService.createUser(modelUser.getName(), gameName);
+            role = createGameService.addUser(user, game);
+        } else {
+            role = createGameService.getRole(user.getId());
         }
-        // TODO: 2018.03.09. User name should be unique 
-        String role = createGameService.addUser(user, game);
-        String teamName = createGameService.getTeamName(user,role);
+        String teamName = createGameService.getTeamName(user, role);
         httpServletRequest.getSession().setAttribute(role, user);
         httpServletRequest.getSession().setAttribute("user", user);
         httpServletRequest.getSession().setAttribute("team", teamName);

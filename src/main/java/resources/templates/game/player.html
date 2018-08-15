@@ -9,10 +9,9 @@
     <title>Title</title>
 </head>
 <body>
-
-<h1>Player - <span th:text="${session.user.name}"></span></h1>
-
 <div class="container">
+    <h1>Player - <span th:text="${session.user.name}"></span></h1>
+    <h1>Current Team: <span id="teamName" th:text="${team}"></span></h1>
     <table id="table" th:style="${'border-style: solid;border-color:' + color}">
 
     </table>

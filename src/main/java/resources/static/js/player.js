@@ -10,6 +10,37 @@ $(function () {
     getCards(url);
 });
 
+function getCards2(url) {
+    $.post(url, function (data) {
+        let table = app.player.table;
+        let PlayerDTO = JSON.parse(data);
+        let cards = PlayerDTO.cards;
+        let colors = PlayerDTO.colors;
+        let length = cards.length;
+        let newTable = `<div class='row'><div class='col offset-1'>`;
+        for (let i = 0; i < length; i++) {
+            if (i !== 0) {
+                newTable += `<div class='col'>`;
+            }
+            newTable += `<div id='w${i}' class='card `;
+            if (colors[i] !== ""){
+                newTable += `'><img class="card-img-top ${colors[i]}"></div></div>`;
+            } else {
+                newTable += `align-self-center'>${cards[i].value}</div></div>`;
+            }
+            if ((i + 1) % 5 === 0) {
+                newTable += `</div>`;
+                newTable += `<div class="row">`;
+            } else if (i === length) {
+                newTable += `</div>`;
+            }
+        }
+
+        table.innerHTML = newTable;
+        addClick();
+    });
+}
+
 
 function getCards(url) {
     $.post(url, function (data) {
@@ -40,6 +71,11 @@ function getCards(url) {
 
 function addClick() {
     $(app.player.table).on('click', '.card', sendData);
+
+}
+
+function removeClick() {
+    $(app.player.table).off();
 
 }
 

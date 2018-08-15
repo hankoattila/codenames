@@ -101,5 +101,10 @@ public class CreateGameService {
         // TODO: 2018.03.09. Get team name of boss;
         return "teamName";
     }
+
+    public String getRole(Long userId) {
+        Player player = playerService.getPlayerByUserId(userId);
+        return player == null ? "boss" : "player";
+    }
 }
 

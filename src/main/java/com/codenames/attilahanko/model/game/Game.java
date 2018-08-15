@@ -3,7 +3,10 @@ package com.codenames.attilahanko.model.game;
 import com.codenames.attilahanko.model.player.UserAccount;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "games")
@@ -27,10 +30,12 @@ public final class Game {
     private Board board;
 
     @ElementCollection
-    private List<String> roles;
+    private List<String> roles = new ArrayList<>();
 
     @ElementCollection
     private Set<Integer> flipped;
+
+    private boolean gameOver = false;
 
     private String currentTeamName;
 
@@ -46,13 +51,22 @@ public final class Game {
         setBoard(board);
         setHost(host);
         currentTeamName = red.getName();
-        roles = Arrays.asList(
-                "blue", "blue", "red", "red", "grey",
-                "blue", "blue", "red", "black", "grey",
-                "blue", "blue", "red", "grey", "grey",
-                "blue", "red", "red", "grey", "grey",
-                "blue", "red", "red", "grey", "blue"
-        );
+        red.setCardLeft(8);
+        blue.setCardLeft(7);
+        int grey = 24 - red.getCardLeft() - blue.getCardLeft();
+        for (int i = 0; i < red.getCardLeft(); i++) {
+            roles.add("red");
+
+        }
+        for (int i = 0; i < blue.getCardLeft(); i++) {
+            roles.add("blue");
+
+        }
+        for (int i = 0; i < grey; i++) {
+            roles.add("grey");
+
+        }
+        roles.add("black");
         Collections.shuffle(roles);
 
     }
@@ -127,6 +141,14 @@ public final class Game {
 
     public String getCurrentTeamName() {
         return currentTeamName;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
     public void nextTeam() {

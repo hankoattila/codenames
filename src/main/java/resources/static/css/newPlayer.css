@@ -1,0 +1,44 @@
+.card{
+    background-image: url("../pictures/card/card.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 100%;
+    border: 1px solid transparent;
+}
+
+.blue {
+    background-image: url("../pictures/card/blue_boy.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 100%;
+    border: 1px solid transparent;
+
+}
+
+.red {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 100%;
+    border: 1px solid transparent;
+    background-image: url("../pictures/card/red_boy.jpg");
+}
+
+.grey {
+    background-image: url("../pictures/card/civil_girl.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 100%;
+    border: 1px solid transparent;
+}
+
+.black {
+    background-image: url("../pictures/card/black.jpg");
+}

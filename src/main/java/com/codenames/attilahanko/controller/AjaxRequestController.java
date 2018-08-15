@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Set;
 
@@ -32,6 +33,16 @@ public class AjaxRequestController {
     @PostMapping("/bossEdit")
     @ResponseBody
     public List<String> bossEdit(HttpServletRequest httpServletRequest) {
+        Enumeration e = (Enumeration) (httpServletRequest.getSession().getAttributeNames());
+// TODO: 2018.03.13. Refactor
+        while (e.hasMoreElements()) {
+            Object tring;
+            if ((tring = e.nextElement()) != null) {
+                System.out.println(httpServletRequest.getSession().getAttribute((String) tring));
+
+            }
+
+        }
         String gameName = (String) httpServletRequest.getSession().getAttribute("gameName");
         Game game = gameService.findByName(gameName);
         return game.getRoles();

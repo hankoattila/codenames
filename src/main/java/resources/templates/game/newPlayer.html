@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{~/css/newPlayer.css}"/>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" th:href="@{~/login/images/icons/favicon.ico}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/vendor/bootstrap/css/bootstrap.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/fonts/iconic/css/material-design-iconic-font.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/vendor/animate/animate.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/vendor/css-hamburgers/hamburgers.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/vendor/animsition/css/animsition.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/vendor/select2/select2.min.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/vendor/daterangepicker/daterangepicker.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/login/css/util.css}">
+    <link rel="stylesheet" th:href="@{~/login/css/main.css}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" th:href="@{~/css/index.css}">
+    <!--===============================================================================================-->
+    <script type="text/javascript" th:src="@{~/login/vendor/jquery/jquery-3.2.1.min.js}"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" th:src="@{~/login/vendor/animsition/js/animsition.min.js}"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" th:src="@{~/login/vendor/bootstrap/js/popper.js}"></script>
+    <script type="text/javascript" th:src="@{~/login/vendor/bootstrap/js/bootstrap.min.js}"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" th:src="@{~/login/vendor/select2/select2.min.js}"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" th:src="@{~/login/vendor/daterangepicker/moment.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/login/vendor/daterangepicker/daterangepicker.js}"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" th:src="@{~/login/vendor/countdowntime/countdowntime.js}"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" th:src="@{~/login/js/main.js}"></script>
+
+
+    <script type="text/javascript" th:src="@{~/js/index.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/websocket/player.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/player.js}"></script>
+    <title>Title</title>
+</head>
+<body>
+<h1>Player - <span th:text="${session.user.name}"></span>
+    <span>
+<h1>Current Team: <span id="teamName" th:text="${team}"></span>
+</h1>
+</span>
+</h1>
+<div id="table" class="container container-fluid">
+
+
+</div>
+<!--<div class="container">-->
+
+    <!--<button type="button" class="btn-success">awdwdwdqwdq</button>-->
+    <!--<table id="table" th:style="${'border-style: solid;border-color:' + color}">-->
+
+    <!--</table>-->
+<!--</div>-->
+
+</body>
+</html>
